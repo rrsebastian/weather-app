@@ -1,30 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 
-function TopSection({ data, city, getCity, callApi, dataLoaded }) {
+function TopSection({
+  data,
+  city,
+  setCity,
+  callApi,
+  dataLoaded,
+  setPrevCity,
+  time,
+}) {
   const [weatherIcon, setWeatherIcon] = useState("");
   const [error, setError] = useState(false);
-  const [dontCallApi, setDontCallApi] = useState(false);
-
   let CurrentWeatherIconId = "";
 
-  console.log(dontCallApi);
-
-  function handleClick(e) {
-    if (city === city) {
-      setDontCallApi(true);
-      e.preventDefault();
-    } else {
-      setDontCallApi(false);
-      callApi();
-    }
-
+  function handleClick() {
     if (city === "") {
       setError(true);
     } else {
       setError(false);
       callApi();
     }
+  }
+
+  function handleChange(e) {
+    setPrevCity((prevCity) => prevCity);
+    setCity(e.target.value);
   }
 
   useEffect(() => {
@@ -64,24 +65,32 @@ function TopSection({ data, city, getCity, callApi, dataLoaded }) {
   const weatherDescription = data.weather && data.weather[0].description;
 
   return (
-    <form onSubmit={(e) => e.preventDefault()}>
+    <form
+      className="Form"
+      onSubmit={(e) => {
+        e.preventDefault();
+        callApi();
+      }}
+    >
       <input
+        className="input"
         style={{ border: error && "1px solid red" }}
         value={city}
         type="text"
-        onChange={(e) => getCity(e.target.value)}
+        onChange={handleChange}
       />
-      <button onClick={handleClick}>
-        <FaMagnifyingGlass />
+      <button className="search-btn" onClick={handleClick}>
+        <FaMagnifyingGlass className="search-img" />
       </button>
       <p>{error && "Cannot be blank"}</p>
-      <h1>City</h1>
-      <div>
-        <h2>{data.name} </h2>
-        <h3>{data.name && data.sys.country}</h3>
+      <div className="loction-wrapper">
+        <h2>
+          {data.name} <span>{data.name && data.sys.country}</span>{" "}
+        </h2>
+        <h3>{time && `${time.hour}:${time.minute}`}</h3>
       </div>
-      <div>
-        <img src={weatherIcon} />
+      <div className="weather-icon-wrapper">
+        <img className="weather-icon" src={weatherIcon} />
         <h2>
           {data.weather &&
             weatherDescription.charAt(0).toUpperCase() +
