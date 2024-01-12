@@ -5,7 +5,7 @@ function BottomSection({ data }) {
     <div className="bottom-container">
       {data.main && (
         <>
-          <div>
+          <div className="maxTemp-feelsLike">
             <h3>Max temp:</h3>
             <p className="max-temp">{Math.floor(data.main.temp_max)}°C</p>
             <h3>Feels like:</h3>

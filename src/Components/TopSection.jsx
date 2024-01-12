@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FaMagnifyingGlass } from "react-icons/fa6";
+import { MdDarkMode } from "react-icons/md";
 
 function TopSection({
   data,
@@ -9,17 +10,17 @@ function TopSection({
   dataLoaded,
   setPrevCity,
   time,
+  prevCity,
+  darkMode,
+  setDarkMode,
+  backgroundColor,
 }) {
   const [weatherIcon, setWeatherIcon] = useState("");
-  const [error, setError] = useState(false);
   let CurrentWeatherIconId = "";
 
   function handleClick() {
     if (city === "") {
-      setError(true);
-    } else {
-      setError(false);
-      callApi();
+      setCity(prevCity);
     }
   }
 
@@ -45,7 +46,7 @@ function TopSection({
       } else if (newIconId === "03d" || newIconId === "03n") {
         setWeatherIcon("/src/assets/03d.png");
       } else if (newIconId === "04d" || newIconId === "04n") {
-        setWeatherIcon("/src/assets/04d.png");
+        setWeatherIcon("/src/assets/03d.png");
       } else if (newIconId === "09d" || newIconId === "09n") {
         setWeatherIcon("/src/assets/09d.png");
       } else if (newIconId === "09d" || newIconId === "09n") {
@@ -64,6 +65,12 @@ function TopSection({
 
   const weatherDescription = data.weather && data.weather[0].description;
 
+  function handleDarkMode() {
+    setDarkMode(!darkMode);
+  }
+
+  const inputBackground = backgroundColor;
+
   return (
     <form
       className="Form"
@@ -72,22 +79,40 @@ function TopSection({
         callApi();
       }}
     >
-      <input
-        className="input"
-        style={{ border: error && "1px solid red" }}
-        value={city}
-        type="text"
-        onChange={handleChange}
-      />
-      <button className="search-btn" onClick={handleClick}>
-        <FaMagnifyingGlass className="search-img" />
-      </button>
-      <p>{error && "Cannot be blank"}</p>
-      <div className="loction-wrapper">
+      <div className="input-button-wrapper">
+        <input
+          className="input"
+          style={inputBackground}
+          value={city}
+          type="text"
+          onChange={handleChange}
+          placeholder="Enter a City"
+        />
+        <div className="buttons-wrapper">
+          <button
+            className="search-btn"
+            style={inputBackground}
+            onClick={handleClick}
+          >
+            <FaMagnifyingGlass className="search-img" />
+          </button>
+          <button
+            onClick={handleDarkMode}
+            style={inputBackground}
+            className="darkMode-btn"
+          >
+            <MdDarkMode className="darkMode-img" />
+          </button>
+        </div>
+      </div>
+      <div className="location-wrapper">
         <h2>
           {data.name} <span>{data.name && data.sys.country}</span>{" "}
         </h2>
-        <h3>{time && `${time.hour}:${time.minute}`}</h3>
+        <h3>
+          {time &&
+            `${time.hour}:${time.minute} ${time.hour >= 12 ? "PM" : "AM"}`}
+        </h3>
       </div>
       <div className="weather-icon-wrapper">
         <img className="weather-icon" src={weatherIcon} />

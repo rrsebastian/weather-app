@@ -5,11 +5,20 @@ import BottomSection from "./BottomSection";
 function Main() {
   const [data, setData] = useState({});
   const [dataLoaded, setDataLoaded] = useState(false);
-  const [city, setCity] = useState("London");
+  const savedCity = localStorage.getItem("city");
+  const [city, setCity] = useState(savedCity || "London");
   const [prevCity, setPrevCity] = useState("");
   const [time, setTime] = useState("");
+  const savedMode = localStorage.getItem("darkMode");
+  const [darkMode, setDarkMode] = useState(savedMode === "true");
 
-  console.log(data);
+  useEffect(() => {
+    localStorage.setItem("city", city);
+  }, [city]);
+
+  useEffect(() => {
+    localStorage.setItem("darkMode", darkMode.toString());
+  }, [darkMode]);
 
   function callApi() {
     if (city !== prevCity) {
@@ -21,7 +30,7 @@ function Main() {
           setData(data);
         })
         .catch((err) => {
-          console.log(`error ${err}`);
+          console.log(`hello ${err}`);
         });
       setPrevCity(city);
 
@@ -48,8 +57,13 @@ function Main() {
     setDataLoaded(true);
   }, []);
 
+  const backgroundColor = {
+    background: darkMode ? "#1D2837" : "#0a6e70",
+    transition: "background 0.6s ease-in",
+  };
+
   return (
-    <div className="container">
+    <div style={backgroundColor} className="container">
       <TopSection
         data={data}
         city={city}
@@ -58,6 +72,10 @@ function Main() {
         dataLoaded={dataLoaded}
         setPrevCity={setPrevCity}
         time={time}
+        prevCity={prevCity}
+        darkMode={darkMode}
+        setDarkMode={setDarkMode}
+        backgroundColor={backgroundColor}
       />
       <BottomSection data={data} />
     </div>

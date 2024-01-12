@@ -1,5 +1,5 @@
 body {
-  background-color: black;
+  background-color: #17181c;
 }
 
 * {
@@ -10,6 +10,10 @@ body {
 }
 
 .container {
+  display: initial;
+  border: 3px solid white;
+  max-width: 80%;
+  margin: 0 auto;
   align-items: center;
   position: absolute;
   left: 50%;
@@ -17,8 +21,8 @@ body {
   padding: 35px;
   padding-bottom: 60px;
   transform: translate(-50%, -50%);
-  background: linear-gradient(to bottom, #2F5AF4 40%, #0FA2AB);
   border-radius: 30px;
+  min-height: 615px;
 }
 
 
@@ -33,20 +37,45 @@ body {
   outline: none;
 }
 
-.search-btn {
-  background-color: #2F5AF4;
+.input::placeholder {
+  color: white;
+}
+
+.search-btn,
+.darkMode-btn,
+.refresh-btn {
   border: none;
   cursor: pointer;
 }
 
-.search-img {
-  font-size: 20px;
+.darkMode-img {
+  font-size: 25px;
 }
 
-.loction-wrapper {
+.search-img {
+  font-size: 22px;
+}
+
+.refresh-img {
+  font-size: 22px;
+}
+
+.search-btn {
+  margin-right: 10px;
+}
+
+
+
+.location-wrapper {
   margin-top: 20px;
   display: flex;
   justify-content: space-between;
+  align-items: end;
+}
+
+.location-wrapper h3 {
+  position: absolute;
+  right: 35px;
 }
 
 .weather-icon-wrapper {
@@ -54,11 +83,13 @@ body {
   flex-direction: column;
   align-items: center;
   margin-top: 20px;
-  margin-bottom: 100px;
 }
 
 .weather-icon {
   width: 200px;
+  max-width: 200px;
+  margin-bottom: 80px;
+  margin-top: 30px;
 }
 
 .weather-icon-wrapper h2 {
@@ -68,20 +99,42 @@ body {
 }
 
 .weather-icon-wrapper p {
-  font-size: 32px;
+  font-size: 40px;
   font-weight: 700;
 }
 
 .bottom-container {
   display: flex;
+  padding-left: 0px;
   justify-content: space-between;
+  width: 290px;
+  margin-top: 40px;
 }
 
 .bottom-container h3 {
+  font-size: 22px;
   margin-bottom: 5px;
+}
+
+.bottom-container p {
+  font-size: 20px;
 }
 
 .max-temp,
 .min-temp {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+}
+
+.input-button-wrapper {
+  display: flex;
+}
+
+.maxTemp-feelsLike {
+  margin-right: 50px;
+}
+
+.buttons-wrapper {
+  display: flex;
+  position: absolute;
+  right: 35px;
 }
