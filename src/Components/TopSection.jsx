@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { MdDarkMode } from "react-icons/md";
+import FirstImg from "../assets/01d.png";
+import SecondImg from "../assets/02d.png";
+import ThirdImg from "../assets/03d.png";
+import FithImg from "../assets/09d.png";
+import SixthImg from "../assets/10d.png";
+import SeventhImg from "../assets/11d.png";
+import EighthImg from "../assets/13d.png";
+import NinethImg from "../assets/50d.png";
 
 function TopSection({
   data,
@@ -40,25 +48,25 @@ function TopSection({
       CurrentWeatherIconId = newIconId;
 
       if (newIconId === "01d" || newIconId === "01n") {
-        setWeatherIcon("/src/assets/01d.png");
+        setWeatherIcon(FirstImg);
       } else if (newIconId === "02d" || newIconId === "02n") {
-        setWeatherIcon("/src/assets/02d.png");
+        setWeatherIcon(SecondImg);
       } else if (newIconId === "03d" || newIconId === "03n") {
-        setWeatherIcon("/src/assets/03d.png");
+        setWeatherIcon(ThirdImg);
       } else if (newIconId === "04d" || newIconId === "04n") {
-        setWeatherIcon("/src/assets/03d.png");
+        setWeatherIcon(ThirdImg);
       } else if (newIconId === "09d" || newIconId === "09n") {
-        setWeatherIcon("/src/assets/09d.png");
+        setWeatherIcon(FithImg);
       } else if (newIconId === "09d" || newIconId === "09n") {
-        setWeatherIcon("/src/assets/09d.png");
+        setWeatherIcon(FithImg);
       } else if (newIconId === "10d" || newIconId === "10n") {
-        setWeatherIcon("/src/assets/10d.png");
+        setWeatherIcon(SixthImg);
       } else if (newIconId === "11d" || newIconId === "11n") {
-        setWeatherIcon("/src/assets/11d.png");
+        setWeatherIcon(SeventhImg);
       } else if (newIconId === "13d" || newIconId === "13n") {
-        setWeatherIcon("/src/assets/13d.png");
+        setWeatherIcon(EighthImg);
       } else if (newIconId === "50d" || newIconId === "50n") {
-        setWeatherIcon("/src/assets/50d.png");
+        setWeatherIcon(NinethImg);
       }
     }
   }, [data]);
