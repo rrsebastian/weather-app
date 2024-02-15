@@ -10,8 +10,6 @@ Live Website - https://liveweathertoday.netlify.app/
 
 Built with:
 
-• React JS
-
 • OpenWeather API
 
 • API Ninjas
